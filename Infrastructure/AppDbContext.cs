@@ -23,7 +23,8 @@ namespace Infrastructure
             modelBuilder.Entity<Point>()
                 .HasMany(p => p.Comments)
                 .WithOne()
-                .HasForeignKey(c => c.PointId);
+                .HasForeignKey(c => c.PointId)
+                .OnDelete(DeleteBehavior.Cascade);
         }
     }
 
