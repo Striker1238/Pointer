@@ -1,0 +1,45 @@
+﻿:root {
+    --parchment: #f0ead2ff;
+    --tea-green: #dde5b6ff;
+    --olivine: #adc178ff;
+    --chamoisee: #a98467ff;
+    --umber: #6c584cff;
+}
+
+body {
+    font-family: 'Segoe UI', sans-serif;
+    margin: 0;
+    padding: 1rem;
+    background-color: var(--parchment);
+    color: var(--umber);
+}
+
+header h1 {
+    margin-bottom: 1rem;
+}
+
+#canvas-container {
+    width: 100%;
+    height: 600px;
+    border: 2px dashed var(--umber);
+    background-color: var(--tea-green);
+}
+
+button,
+.btn-link {
+    background-color: var(--olivine);
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    margin: 0.3rem;
+    cursor: pointer;
+    border-radius: 5px;
+    text-decoration: none;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    max-width: 400px;
+}
