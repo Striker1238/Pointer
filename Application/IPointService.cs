@@ -10,5 +10,7 @@ namespace Application.Interfaces
         Task DeleteAsync(int id);
         Task<PointDto> UpdateAsync(int id, PointDto dto);
         Task<CommentDto> AddCommentAsync(int pointId, CommentDto dto);
+        Task<CommentDto> UpdateCommentAsync(int commentId, CommentDto dto);
+        Task DeleteCommentAsync(int id);
     }
 }

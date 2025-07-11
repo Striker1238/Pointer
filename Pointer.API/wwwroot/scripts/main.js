@@ -1,5 +1,10 @@
 ﻿$(document).ready(() => {
     const manager = new PointManager("#canvas-container", new ApiService("/api/points"));
     manager.init();
-    $("#add-point").on("click", () => manager.addRandomPoint());
+
+    $("#add-point-btn").on("click", () => {
+        console.log("Кнопка нажата!");
+        manager.showAddPointDialog();
+    });
+
 });

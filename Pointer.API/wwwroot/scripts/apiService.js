@@ -31,4 +31,27 @@
             method: "DELETE"
         });
     }
+
+    async addComment(pointId, comment) {
+        return $.ajax({
+            url: `${this.baseUrl}/${pointId}/comments`,
+            method: "POST",
+            contentType: "application/json",
+            data: JSON.stringify(comment)
+        });
+    }
+    async updateComment(comment) {
+        return $.ajax({
+            url: `${this.baseUrl}/comments/${comment.id}`,
+            method: "PUT",
+            contentType: "application/json",
+            data: JSON.stringify(comment)
+        });
+    }
+    async deleteComment(commentId) {
+        return $.ajax({
+            url: `${this.baseUrl}/comments/${commentId}`,
+            method: "DELETE"
+        });
+    }
 }

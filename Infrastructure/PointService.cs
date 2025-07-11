@@ -147,5 +147,53 @@ namespace Infrastructure
             await _context.SaveChangesAsync();
             return _mapper.Map<CommentDto>(comment);
         }
+
+
+        /// <summary>
+        /// Обновляет данные существующего комментария
+        /// </summary>
+        /// <param name="id">Идентификатор обновляемого комментария</param>
+        /// <param name="dto">DTO объект с новыми данными коментария</param>
+        /// <returns>
+        /// DTO объект с обновленными данными или null, если комментарий не найден
+        /// </returns>
+        /// <exception cref="ArgumentNullException">Возникает если dto равен null</exception>
+        public async Task<CommentDto> UpdateCommentAsync(int commentId, CommentDto dto)
+        {
+            if (dto is null) throw new ArgumentNullException(nameof(dto));
+
+
+            var comment = await _context.Comments
+                .Where(c => c.Id == commentId)
+                .FirstOrDefaultAsync();
+
+            if (comment is not null)
+            {
+                _mapper.Map(dto, comment);
+                _context.Comments.Update(comment);
+                await _context.SaveChangesAsync();
+                return _mapper.Map<CommentDto>(comment);
+            }
+
+            return null;
+        }
+
+
+        /// <summary>
+        /// Удаляет комментарий с указанным идентификатором
+        /// </summary>
+        /// <param name="id">Идентификатор комментария для удаления</param>
+        public async Task DeleteCommentAsync(int commentId)
+        {
+            var comment = await _context.Comments
+                .Where(c => c.Id == commentId)
+                .FirstOrDefaultAsync();
+
+            if (comment is not null)
+            {
+                _context.Comments.Remove(comment);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

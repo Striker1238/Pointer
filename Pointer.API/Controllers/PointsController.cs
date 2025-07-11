@@ -92,4 +92,33 @@ public class PointsController : ControllerBase
         var result = await _service.AddCommentAsync(pointId, dto);
         return result is not null ? Ok(result) : NotFound();
     }
+
+    /// <summary>
+    /// Обновить данные комментария
+    /// </summary>
+    /// <param name="id">Идентификатор комментария</param>
+    /// <param name="dto">Новые данные комментария</param>
+    /// <returns>Обновленные данные комментария</returns>
+    [HttpPut("comments/{id}")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> UpdateComment(int id, [FromBody] CommentDto dto)
+    {
+        var result = await _service.UpdateCommentAsync(id, dto);
+        return result is not null ? Ok(result) : NotFound();
+    }
+
+    /// <summary>
+    /// Удалить комментарий
+    /// </summary>
+    /// <param name="id">Идентификатор комментария</param>
+    [HttpDelete("comments/{id}")]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<IActionResult> DeleteComment(int id)
+    {
+        await _service.DeleteCommentAsync(id);
+        return NoContent();
+    }
 }
