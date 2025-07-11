@@ -8,7 +8,8 @@ namespace Application
     {
         public MappingProfile()
         {
-            CreateMap<Point, PointDto>().ReverseMap();
+            CreateMap<Point, PointDto>().ReverseMap()
+                .ForMember(p => p.Comments, opt => opt.Ignore()); ;
             CreateMap<Comment, CommentDto>().ReverseMap();
         }
     }
